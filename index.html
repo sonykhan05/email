@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Validator Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Plans Popup Modal -->
+        <div class="plans-popup-overlay" id="plansPopup">
+            <div class="plans-popup-content">
+                <div class="popup-header">
+                    <h2><i class="fas fa-star"></i> Welcome to Email Validator Pro</h2>
+                    <button class="close-popup" onclick="closePlansPopup()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="popup-body">
+                    <p class="popup-message">Please note that to use this powerful email validation tool, you'll need to purchase one of our premium plans. Our plans offer various features and durations to suit your needs.</p>
+                    <div class="popup-actions">
+                        <button class="primary-btn" onclick="redirectToPlans()">
+                            <i class="fas fa-list-ul"></i> See All Plans
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Toast Container -->
+        <div class="toast-container" id="toastContainer"></div>
+
+        <div class="user-account-section">
+            <div class="account-icon" onclick="toggleUserPanel()">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="user-panel-dropdown" id="userPanelDropdown">
+                <div class="user-info">
+                    <div class="info-group">
+                        <label><i class="fas fa-envelope"></i> Gmail:</label>
+                        <span id="userGmail">Loading...</span>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-key"></i> Password:</label>
+                        <div class="password-wrapper">
+                            <span id="userPassword" class="password-field">••••••••</span>
+                            <button class="toggle-password" onclick="togglePassword()">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-calendar-alt"></i> Plan Duration:</label>
+                        <span id="planDuration">Loading...</span>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-hourglass-half"></i> Days Remaining:</label>
+                        <span id="daysRemaining">Loading...</span>
+                    </div>
+                    <div class="info-group logout-group">
+                        <button class="secondary-btn" onclick="handleUserLogout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                    <div class="user-panel-footer">
+                        <p>&copy; 2025 BoostLink Network</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <div class="contact-icon" onclick="toggleContactPanel()">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-panel-dropdown" id="contactPanelDropdown">
+                <div class="contact-info">
+                    <div class="info-header">
+                        <h3><i class="fas fa-user"></i> SHADOW SUNNY</h3>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-envelope"></i> Email:</label>
+                        <a href="mailto:boostlinknetwork@gmail.com" class="contact-email">
+                            boostlinknetwork@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="app-header">
+            <h1><i class="fas fa-envelope-circle-check"></i> Email Validator Pro</h1>
+            <p class="subtitle">Check and validate email addresses</p>
+        </header>
+
+        <main class="main-content">
+            <!-- User Panel -->
+            <section class="checker-section card user-panel">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-circle"></i> User Information</h2>
+                </div>
+                <div class="user-info">
+                    <div class="info-group">
+                        <label><i class="fas fa-envelope"></i> Gmail:</label>
+                        <span id="userGmail">Loading...</span>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-key"></i> Password:</label>
+                        <div class="password-wrapper">
+                            <span id="userPassword" class="password-field">••••••••</span>
+                            <button class="toggle-password" onclick="togglePassword()">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-calendar-alt"></i> Plan Duration:</label>
+                        <span id="planDuration">Loading...</span>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-hourglass-half"></i> Days Remaining:</label>
+                        <span id="daysRemaining">Loading...</span>
+                    </div>
+                </div>
+            </section>
+            <!-- Single Email Checker -->
+            <section class="checker-section card">
+                <div class="section-header">
+                    <h2><i class="fas fa-envelope"></i> Single Email Check</h2>
+                </div>
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-at input-icon"></i>
+                        <input type="email" id="emailInput" placeholder="Enter email address to check">
+                    </div>
+                    <button class="primary-btn" onclick="checkEmail()">
+                        <i class="fas fa-search"></i> Check Email
+                    </button>
+                </div>
+
+                <div class="result" id="result"></div>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Analyzing email...</p>
+                </div>
+            </section>
+
+            <!-- Bulk Email Checker -->
+            <section class="checker-section card">
+                <div class="section-header">
+                    <h2><i class="fas fa-envelopes-bulk"></i> Bulk Email Check</h2>
+                    <p class="section-desc">Check multiple emails at once (one email per line)</p>
+                </div>
+                <div class="bulk-input-group">
+                    <div class="bulk-input-wrapper">
+                        <i class="fas fa-envelope-bulk input-icon"></i>
+                        <textarea id="bulkEmailInput" placeholder="Enter multiple email addresses&#10;example1@domain.com&#10;example2@domain.com"></textarea>
+                    </div>
+                    <div class="bulk-controls">
+                        <button class="secondary-btn" onclick="clearBulkEmails()">
+                            <i class="fas fa-eraser"></i> Clear
+                        </button>
+                        <button class="primary-btn" onclick="checkBulkEmails()">
+                            <i class="fas fa-list-check"></i> Check All Emails
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bulk-results" id="bulkResults">
+                    <div class="results-header">
+                        <h3>Results</h3>
+                        <div class="stats" id="bulkStats"></div>
+                    </div>
+                    <div class="download-controls">
+                        <div class="download-group">
+                            <span class="download-label">Valid Emails:</span>
+                            <button class="download-btn" onclick="downloadValidEmails('txt')">
+                                <i class="fas fa-file-text"></i> Download TXT
+                            </button>
+                            <button class="download-btn" onclick="downloadValidEmails('excel')">
+                                <i class="fas fa-file-excel"></i> Download Excel
+                            </button>
+                        </div>
+                        <div class="download-group">
+                            <span class="download-label">Invalid Emails:</span>
+                            <button class="download-btn" onclick="downloadInvalidEmails('txt')">
+                                <i class="fas fa-file-text"></i> Download TXT
+                            </button>
+                            <button class="download-btn" onclick="downloadInvalidEmails('excel')">
+                                <i class="fas fa-file-excel"></i> Download Excel
+                            </button>
+                        </div>
+                    </div>
+                    <div class="results-table-container">
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>Email Address</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="loading" id="bulkLoading">
+                    <div class="spinner"></div>
+                    <p>Analyzing emails... <span id="progressText">0/0</span></p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2025 BoostLink Network</p>
+        </footer>
+    </div>
+
+    <script src="admin_script.js"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script>
+        // Initialize the authentication system
+        if (!window.userAuthSystem) {
+            console.error('Authentication system failed to load');
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Validator Pro - Pricing Plans</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary-color: #6b7280;
+            --background: #f3f4f6;
+            --card-background: #ffffff;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --border-color: #e5e7eb;
+            --success-color: #059669;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Dosis', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: var(--text-primary);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .plan-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .features-list li i {
+            color: var(--success-color);
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .contact-email {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-email:hover {
+            color: var(--primary-hover);
+        }
+
+        .validations {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        /* Animated background */
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #4f46e5, #6366f1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .plan-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .plans-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Email Validator Tool - Pricing Plans</h1>
+        </header>
+
+        <div class="plans-container">
+            <!-- Basic Plan -->
+            <div class="plan-card">
+                <h2 class="plan-name">PLAN 1</h2>
+                <div class="validations">2,500 Email Validations/M</div>
+                <div class="plan-price">$5<span>/M</span></div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Syntax & Domain Verification</li>
+                    <li><i class="fas fa-check"></i> Disposable Email Detection</li>
+                    <li><i class="fas fa-check"></i> Spam Trap Detection</li>
+                    <li><i class="fas fa-check"></i> Catch-All Detection</li>
+                    <li><i class="fas fa-check"></i> Detailed Validation Reports</li>
+                    <li><i class="fas fa-check"></i> Download Reports in TXT File</li>
+                    <li><i class="fas fa-check"></i> Download Reports in EXCEL File</li>
+                </ul>
+                <div class="contact-info">
+                    <a href="mailto:boostlinknetwork@gmail.com" class="contact-email">
+                        <i class="fas fa-envelope"></i>
+                        boostlinknetwork@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- Standard Plan -->
+            <div class="plan-card">
+                <h2 class="plan-name">PLAN 2</h2>
+                <div class="validations">5,000 Email Validations/M</div>
+                <div class="plan-price">$9<span>/M</span></div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Syntax & Domain Verification</li>
+                    <li><i class="fas fa-check"></i> Disposable Email Detection</li>
+                    <li><i class="fas fa-check"></i> Spam Trap Detection</li>
+                    <li><i class="fas fa-check"></i> Catch-All Detection</li>
+                    <li><i class="fas fa-check"></i> Detailed Validation Reports</li>
+                    <li><i class="fas fa-check"></i> Download Reports in TXT File</li>
+                    <li><i class="fas fa-check"></i> Download Reports in EXCEL File</li>
+                </ul>
+                <div class="contact-info">
+                    <a href="mailto:boostlinknetwork@gmail.com" class="contact-email">
+                        <i class="fas fa-envelope"></i>
+                        boostlinknetwork@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="plan-card">
+                <h2 class="plan-name">PLAN 3</h2>
+                <div class="validations">Unlimited Email Validations/M</div>
+                <div class="plan-price">$25<span>/M</span></div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Syntax & Domain Verification</li>
+                    <li><i class="fas fa-check"></i> Disposable Email Detection</li>
+                    <li><i class="fas fa-check"></i> Spam Trap Detection</li>
+                    <li><i class="fas fa-check"></i> Catch-All Detection</li>
+                    <li><i class="fas fa-check"></i> Detailed Validation Reports</li>
+                    <li><i class="fas fa-check"></i> Download Reports in TXT File</li>
+                    <li><i class="fas fa-check"></i> Download Reports in EXCEL File</li>
+                </ul>
+                <div class="contact-info">
+                    <a href="mailto:boostlinknetwork@gmail.com" class="contact-email">
+                        <i class="fas fa-envelope"></i>
+                        boostlinknetwork@gmail.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
