@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="particles"></div>
+    <div class="container">
+        <div class="qr-generator">
+            <div class="logo">
+                <i class="fas fa-qrcode"></i>
+            </div>
+            <h1>QR Code Generator</h1>
+            <p>Enter any URL to generate a QR code instantly!</p>
+            
+            <div class="message-container" id="generate-message"></div>
+            
+            <div class="input-section">
+                <div class="input-wrapper">
+                    <i class="fas fa-link"></i>
+                    <input type="text" id="url-input" placeholder="Enter URL here...">
+                </div>
+                <button id="generate-btn">
+                    <i class="fas fa-magic"></i>
+                    Generate QR Code
+                </button>
+                <button id="reset-btn" class="hidden">
+                    <i class="fas fa-redo"></i>
+                    Reset
+                </button>
+            </div>
+            <div class="qr-section">
+                <div id="qr-code"></div>
+                <div id="download-section" class="hidden">
+                    <div class="message-container" id="download-message"></div>
+                    <button id="download-btn">
+                        <i class="fas fa-download"></i>
+                        Download QR Code
+                    </button>
+                </div>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-bolt"></i>
+                    <span>Fast</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Mobile Ready</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="toast" id="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html> 
