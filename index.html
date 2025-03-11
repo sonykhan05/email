@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Extractor Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="app-header">
+            <i class="fas fa-envelope-open-text header-icon"></i>
+            <h1>Email Extractor Pro</h1>
+            <p class="subtitle">Extract emails from any text quickly and easily</p>
+        </div>
+
+        <div class="main-card">
+            <div class="input-section">
+                <div class="input-header">
+                    <i class="fas fa-pen"></i>
+                    <span>Input Text</span>
+                </div>
+                <textarea id="inputText" placeholder="Paste your text here to extract email addresses..."></textarea>
+                <div class="button-group">
+                    <button id="extractBtn" class="primary-btn">
+                        <i class="fas fa-search"></i>
+                        Extract Emails
+                    </button>
+                    <button id="resetBtn" class="secondary-btn">
+                        <i class="fas fa-undo"></i>
+                        Reset Text
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-card" id="resultsSection">
+            <div class="results-header">
+                <div class="results-title">
+                    <i class="fas fa-list"></i>
+                    <div>
+                        <h2>Found Email Addresses</h2>
+                        <p class="email-count" id="emailCount">
+                            <i class="fas fa-envelope"></i>
+                            <span>0 emails found</span>
+                        </p>
+                    </div>
+                </div>
+                <button id="copyBtn" class="secondary-btn">
+                    <i class="fas fa-copy"></i>
+                    Copy All Emails
+                </button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="60">#</th>
+                            <th>Email Address</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
