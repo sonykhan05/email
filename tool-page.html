@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Tool - ToolsHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Preloader styles */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(74, 108, 247, 0.2);
+            border-radius: 50%;
+            border-top-color: #4a6cf7;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Hide content until loaded */
+        body.loading {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="loading">
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="spinner"></div>
+    </div>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Tools<span>Hub</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tools.html" class="active">Tools</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="tool-page-header">
+        <div class="container">
+            <div id="toolHeader">
+                <!-- Tool header will be loaded here -->
+                <h1>Loading tool...</h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="tool-content">
+        <div class="container">
+            <div id="toolContainer" class="tool-container">
+                <!-- Tool will be rendered here -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Tools<span>Hub</span></h2>
+                    <p>Your ultimate tools platform</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-tools">
+                    <h3>Popular Tools</h3>
+                    <ul>
+                        <li><a href="tools.html#pdf-converter">PDF Converter</a></li>
+                        <li><a href="tools.html#image-editor">Image Editor</a></li>
+                        <li><a href="tools.html#calculator">Advanced Calculator</a></li>
+                        <li><a href="tools.html#code-formatter">Code Formatter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> info@toolshub.com</p>
+                    <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 ToolsHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/tools.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        function loadToolData() {
+            // Get the tool ID from the URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const toolId = urlParams.get('id');
+            
+            if (toolId) {
+                // Load tool data from localStorage or fallback to dummy tools
+                const storedTools = JSON.parse(localStorage.getItem('tools')) || [];
+                // If no tools in localStorage, use dummy tools
+                const allTools = storedTools.length > 0 ? storedTools : (typeof getDummyTools === 'function' ? getDummyTools() : []);
+                const tool = allTools.find(t => t.id === parseInt(toolId));
+                
+                if (tool) {
+                    // Check if tool is inactive
+                    if (tool.status.toLowerCase() === 'inactive') {
+                        document.getElementById('toolHeader').innerHTML = `
+                            <h1>Tool Not Available</h1>
+                            <p>This tool is currently inactive.</p>
+                        `;
+                        document.getElementById('toolContainer').innerHTML = `
+                            <div class="no-tool-message">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <p>Sorry, this tool is currently inactive and not available for use.</p>
+                                <a href="tools.html" class="btn btn-primary">Browse Other Tools</a>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    // Update page title
+                    document.title = `${tool.name} - ToolsFreely`;
+                    
+                    // Update tool header
+                    document.getElementById('toolHeader').innerHTML = `
+                        <h1>${tool.name}</h1>
+                        <p>${tool.description}</p>
+                        ${tool.status.toLowerCase() === 'maintenance' ? '<span class="maintenance-badge">Under Maintenance</span>' : ''}
+                    `;
+                    
+                    // If tool is in maintenance mode, show maintenance message
+                    if (tool.status.toLowerCase() === 'maintenance') {
+                        document.getElementById('toolContainer').innerHTML = `
+                            <div class="maintenance-message">
+                                <i class="fas fa-tools"></i>
+                                <h3>This tool is currently under maintenance</h3>
+                                <p>We're working to improve this tool. Please check back later.</p>
+                                <a href="tools.html" class="btn btn-primary">Browse Other Tools</a>
+                            </div>
+                        `;
+                    } else {
+                        // Render the tool
+                        renderToolWithCode(toolId, 'toolContainer');
+                    }
+                } else {
+                    // Tool not found
+                    document.getElementById('toolHeader').innerHTML = `
+                        <h1>Tool Not Found</h1>
+                        <p>The requested tool could not be found.</p>
+                    `;
+                    document.getElementById('toolContainer').innerHTML = `
+                        <div class="no-tool-message">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <p>Sorry, the tool you're looking for doesn't exist or has been removed.</p>
+                            <a href="tools.html" class="btn btn-primary">Browse All Tools</a>
+                        </div>
+                    `;
+                }
+            } else {
+                // No tool ID provided
+                document.getElementById('toolHeader').innerHTML = `
+                    <h1>No Tool Selected</h1>
+                    <p>Please select a tool to use.</p>
+                `;
+                document.getElementById('toolContainer').innerHTML = `
+                    <div class="no-tool-message">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Please select a tool from the tools page to use it.</p>
+                        <a href="tools.html" class="btn btn-primary">Browse Tools</a>
+                    </div>
+                `;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial load
+            loadToolData();
+            
+            // Listen for storage changes
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'tools') {
+                    // Reload tool data when localStorage changes
+                    loadToolData();
+                }
+            });
+            
+            // Listen for custom event for same-window updates
+            window.addEventListener('localDataChanged', function(e) {
+                if (e.detail && e.detail.key === 'tools') {
+                    // Reload tool data when it changes in the same window
+                    loadToolData();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

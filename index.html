@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolsFreely - Your Ultimate Tools Platform</title>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" as="style">
+    
+    <!-- Async load non-critical CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    
+    <!-- Critical CSS inlined -->
+    <style>
+        /* Critical styles for initial render */
+        :root {
+            --primary-color: #4a6cf7;
+            --text-color: #333;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Optimized preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(74, 108, 247, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        body.loading { overflow: hidden; }
+        
+        /* Critical header styles */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--text-color);
+        }
+        .logo span {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body class="loading">
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Tools<span>Hub</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="caveat-font">Your Ultimate Tools Platform</h1>
+                <p>Access a wide range of online tools to simplify your work and boost productivity</p>
+                <div class="hero-buttons">
+                    <a href="tools.html" class="btn btn-primary">Explore Tools</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div id="headerBannerContainer">
+                    <!-- The header banner image will be loaded here via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose ToolsFreely?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Fast & Efficient</h3>
+                    <p>All tools are optimized for speed and efficiency, saving you valuable time</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>Your data never leaves your browser, ensuring maximum privacy and security</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Works Everywhere</h3>
+                    <p>Our tools work on all devices and browsers, no downloads required</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3>Unlimited Usage</h3>
+                    <p>Use our tools as much as you need, with no hidden fees or restrictions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="popular-tools">
+        <div class="container">
+            <h2 class="section-title">Popular Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>PDF Converter</h3>
+                    <p>Convert documents to PDF format easily</p>
+                    <div class="tool-actions">
+                        <a href="tool-page.html?id=1" class="btn btn-tool">Use Tool</a>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>Image Editor</h3>
+                    <p>Edit and enhance your images online</p>
+                    <div class="tool-actions">
+                        <a href="tool-page.html?id=2" class="btn btn-tool">Use Tool</a>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Advanced Calculator</h3>
+                    <p>Perform complex calculations with ease</p>
+                    <div class="tool-actions">
+                        <a href="tool-page.html?id=3" class="btn btn-tool">Use Tool</a>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Code Formatter</h3>
+                    <p>Format and beautify your code</p>
+                    <div class="tool-actions">
+                        <a href="tool-page.html?id=4" class="btn btn-tool">Use Tool</a>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all">
+                <a href="tools.html" class="btn btn-secondary">View All Tools</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Users Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"ToolsFreely has saved me countless hours with their PDF tools. The interface is intuitive and the results are always perfect."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/user1.jpg" alt="John Doe" data-src="images/user1.jpg">
+                        <div>
+                            <h4>John Doe</h4>
+                            <p>Marketing Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"As a developer, I use the code formatter daily. It's fast, reliable, and has all the options I need. Highly recommended!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/user2.jpg" alt="Jane Smith" data-src="images/user2.jpg">
+                        <div>
+                            <h4>Jane Smith</h4>
+                            <p>Web Developer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"The image editing tools are fantastic! I can quickly resize, crop, and enhance my photos without needing expensive software."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/user3.jpg" alt="Robert Johnson" data-src="images/user3.jpg">
+                        <div>
+                            <h4>Robert Johnson</h4>
+                            <p>Photographer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Tools<span>Hub</span></h2>
+                    <p>Your ultimate tools platform</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="tools.html">Tools</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-tools">
+                    <h3>Popular Tools</h3>
+                    <ul>
+                        <li><a href="tool-page.html?id=1">PDF Converter</a></li>
+                        <li><a href="tool-page.html?id=2">Image Editor</a></li>
+                        <li><a href="tool-page.html?id=3">Advanced Calculator</a></li>
+                        <li><a href="tool-page.html?id=4">Code Formatter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> info@toolsfreely.com</p>
+                    <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ToolsFreely. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Defer non-critical JavaScript -->
+    <script defer src="js/main.js"></script>
+    
+    <!-- Inline critical JavaScript -->
+    <script>
+        // Remove preloader when page loads
+        window.addEventListener('load', function() {
+            document.body.classList.remove('loading');
+            document.getElementById('preloader').classList.add('hidden');
+        });
+        
+        // Progressive image loading
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+        });
+    </script>
+</body>
+</html>
