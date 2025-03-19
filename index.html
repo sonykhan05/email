@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickLink - URL Shortener</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-link"></i>
+                <h1>QuickLink</h1>
+            </div>
+            <p class="tagline">Shorten. Share. Track.</p>
+        </header>
+
+        <main>
+            <div class="card url-shortener">
+                <h2>Create Short URL</h2>
+                <div class="input-group">
+                    <input type="url" id="original-url" placeholder="Paste your long URL here" required>
+                    <button id="shorten-btn">Shorten</button>
+                </div>
+                <div class="custom-url-option">
+                    <input type="checkbox" id="custom-url-toggle">
+                    <label for="custom-url-toggle">Use custom alias</label>
+                    <div class="custom-alias-input hidden">
+                        <input type="text" id="custom-alias" placeholder="Enter custom alias">
+                    </div>
+                </div>
+                <div id="result" class="hidden">
+                    <h3>Your shortened URL</h3>
+                    <div class="short-url-container">
+                        <input type="text" id="shortened-url" readonly>
+                        <button id="copy-btn"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="button-group">
+                        <button id="qr-btn">Generate QR Code</button>
+                        <button id="new-url-btn">Shorten Another URL</button>
+                    </div>
+                    <div id="qr-code" class="hidden"></div>
+                </div>
+            </div>
+
+            <div class="card features">
+                <h2>Why Choose QuickLink?</h2>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Fast & Reliable</h3>
+                        <p>Instantly create shortened URLs that never expire.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-lock"></i>
+                        <h3>Secure Links</h3>
+                        <p>All shortened URLs are secure and protected.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Click Analytics</h3>
+                        <p>Track your link performance with detailed stats.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-qrcode"></i>
+                        <h3>QR Code Generation</h3>
+                        <p>Convert your links to QR codes for easy sharing.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card recent-urls">
+                <h2>Recent URLs</h2>
+                <div id="recent-urls-list">
+                    <!-- Recent URLs will be displayed here -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 QuickLink URL Shortener. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
