@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBay Profit Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Left Navigation Menu -->
+    <nav class="side-nav" id="sideNav">
+        <div class="nav-brand">
+            <i class="fas fa-store"></i>
+            <span>Profit Tools</span>
+        </div>
+        <ul class="nav-links">
+            <li class="active">
+                <a href="#">
+                    <i class="fab fa-ebay"></i>
+                    <span>eBay Calculator</span>
+                </a>
+            </li>
+            <!-- More menu items can be added here -->
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="calculator-card">
+                <div class="calculator-header">
+                    <i class="fas fa-calculator"></i>
+                    <h1>eBay Profit Calculator</h1>
+                </div>
+                
+                <!-- Currency Switcher -->
+                <div class="currency-switcher">
+                    <div class="switch-option" data-currency="GBP">
+                        <i class="fas fa-pound-sign"></i>
+                        <span>GBP</span>
+                    </div>
+                    <div class="switch-option" data-currency="USD">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>USD</span>
+                    </div>
+                </div>
+                
+                <div class="calculator-content">
+                    <!-- Left Side - Input Section -->
+                    <div class="input-section">
+                        <div class="exchange-rate">
+                            <div class="rate-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <div class="rate-info">
+                                <span class="rate-label">Live Exchange Rate:</span>
+                                <span id="currentRate" class="rate-value">Loading...</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="sellingPrice">
+                                <i class="fas fa-tag"></i>
+                                eBay Selling Price (<span class="currency-symbol">£</span>)
+                            </label>
+                            <input type="number" id="sellingPrice" step="0.01" placeholder="e.g., 4.59">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="temuCost">
+                                <i class="fas fa-shopping-cart"></i>
+                                Temu Product Cost (<span class="currency-symbol">£</span>)
+                            </label>
+                            <input type="number" id="temuCost" step="0.01" placeholder="Enter product cost">
+                        </div>
+
+                        <button onclick="calculateProfit()">
+                            <i class="fas fa-calculator"></i>
+                            Calculate Profit
+                        </button>
+                    </div>
+
+                    <!-- Right Side - Results Section -->
+                    <div class="results" id="resultsSection">
+                        <h3><i class="fas fa-chart-line"></i> Profit Breakdown</h3>
+                        <div class="result-item">
+                            <div class="result-label">
+                                <i class="fas fa-percentage"></i>
+                                <span>After eBay Fees (25%):</span>
+                            </div>
+                            <span id="afterFees" class="result-value"><span class="currency-symbol">£</span>0.00</span>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span>Total Profit (<span class="currency-code">GBP</span>):</span>
+                            </div>
+                            <span id="profitGBP" class="result-value"><span class="currency-symbol">£</span>0.00</span>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-label">
+                                <i class="fas fa-coins"></i>
+                                <span>Total Profit (PKR):</span>
+                            </div>
+                            <span id="profitPKR" class="result-value">PKR 0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Menu toggle functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const sideNav = document.getElementById('sideNav');
+        const mainContent = document.querySelector('.main-content');
+
+        menuToggle.addEventListener('click', () => {
+            sideNav.classList.toggle('nav-open');
+            mainContent.classList.toggle('content-shifted');
+            menuToggle.classList.toggle('menu-open');
+        });
+    </script>
+</body>
+</html> 
